@@ -33,11 +33,8 @@ jobs:
         
       - name: Building Windows Image
         run: ./start.cmd
-        
-      - name: Checking Directories
-        run: |
-           dir
-           ren *.ISO Windows.iso
-        
+
       - name: Upload File & Get Links
-        run: ./upload.cmd Windows.iso
+        shell: cmd
+        run: |
+          FOR %%i IN (*.ISO) DO CALL upload.cmd "%%i"
